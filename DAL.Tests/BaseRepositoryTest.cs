@@ -7,10 +7,10 @@ using Xunit;
 
 namespace DAL.Test
 {
-    class TestEmergencyRepository
+    class TestGoodRepository
         : BaseRepository<Good>
     {
-        public TestEmergencyRepository(DbContext context)
+        public TestGoodRepository(DbContext context)
             : base(context)
         {
         }
@@ -26,7 +26,7 @@ namespace DAL.Test
             var mockDbSet = new Mock<DbSet<Good>>();
             mockContext.Setup(context => context.Set<Good>()).Returns(mockDbSet.Object);
 
-            var repository = new TestEmergencyRepository(mockContext.Object);
+            var repository = new TestGoodRepository(mockContext.Object);
 
             Good expected = new Mock<Good>().Object;
 
@@ -43,7 +43,7 @@ namespace DAL.Test
             var mockDbSet = new Mock<DbSet<Good>>();
             mockContext.Setup(context => context.Set<Good>()).Returns(mockDbSet.Object);
        
-            var repository = new TestEmergencyRepository(mockContext.Object);
+            var repository = new TestGoodRepository(mockContext.Object);
 
             Good expected = new Good() { Id = 4, StorageId = 1, Amount = 121, TypeId = 1 };
             mockDbSet.Setup(mock => mock.Find(expected.Id)).Returns(expected);
@@ -65,7 +65,7 @@ namespace DAL.Test
 
             Good expected = new Good() { Id = 3, StorageId=1, Amount=999, TypeId=5 };
             mockDbSet.Setup(mock => mock.Find(expected.Id)).Returns(expected);
-            var repository = new TestEmergencyRepository(mockContext.Object);
+            var repository = new TestGoodRepository(mockContext.Object);
 
             Good actual = repository.Get(expected.Id);
 
@@ -83,7 +83,7 @@ namespace DAL.Test
 
             Good expected = new Good() { Id = 1, StorageId = 3, Amount = 54, TypeId = 2 };
             mockDbSet.Setup(mock => mock.Find(expected.Id)).Returns(expected);
-            var repository = new TestEmergencyRepository(mockContext.Object);
+            var repository = new TestGoodRepository(mockContext.Object);
 
             Good actual = repository.Get(2);
 

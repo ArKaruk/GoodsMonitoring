@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTO;
+using BLL.Services.Interfaces;
 using DAL.Entity;
 using DAL.UnitOfWork;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Impl
 {
-    public class GoodService
+    public class GoodService:IGoodService
     {
         private readonly IUnitOfWork _database;
         private int amountOnPage = 20;
@@ -24,7 +25,7 @@ namespace BLL.Services.Impl
             _database = unitOfWork;
         }
 
-        public IEnumerable<GoodDTO> GetEmergencies(int emergencyTypeId, int page)
+        public IEnumerable<GoodDTO> GetGoods(int emergencyTypeId, int page)
         {
             var goodsEntities = _database.Goods.Find(g => g.TypeId == emergencyTypeId, page, amountOnPage);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Good, GoodDTO>()).CreateMapper();

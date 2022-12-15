@@ -9,6 +9,6 @@ namespace BLL.Services.Interfaces
 {
     public interface IGoodService
     {
-        IEnumerable<GoodDTO> GetEmergencies(int goodTypeId, int page);
+        IEnumerable<GoodDTO> GetGoods(int goodTypeId, int page);
     }
 }
