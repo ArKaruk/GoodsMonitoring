@@ -30,11 +30,10 @@ namespace DAL.Repositories.Implementation
         }
 
         public IEnumerable<T> Find(
-            Func<T, bool> predicate)
+            Func<T, bool> predicate, int page, int amountOnPage)
         {
             return
-                _set.Where(predicate)
-                    .ToList();
+                _set.Where(predicate).Skip(amountOnPage * page).Take(amountOnPage).ToList();
         }
 
         public T Get(int id)
